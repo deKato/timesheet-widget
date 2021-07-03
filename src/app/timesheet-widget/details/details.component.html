@@ -1,0 +1,103 @@
+<div class="details">
+  <div *ngIf="formattedDate" class="details__header">
+    <div class="details__header__date">
+      <span class="details__header__date__weekday"
+        >{{ formattedDate[0] }}&nbsp;</span
+      >
+      <span>{{ formattedDate[1] }}</span>
+    </div>
+    <div class="details__header__btn">
+      <span> Go to timesheet </span>
+    </div>
+  </div>
+  <div *ngIf="dayData" class="details__body">
+    <ng-container
+      *ngIf="workingHours.length > 0"
+      [ngTemplateOutlet]="workingHoursTemplate"
+      [ngTemplateOutletContext]="{ data: workingHours }"
+    ></ng-container>
+    <ng-container
+      *ngIf="expenses.length > 0"
+      [ngTemplateOutlet]="expensesTemplate"
+      [ngTemplateOutletContext]="{ data: expenses }"
+    ></ng-container>
+    <ng-container
+      *ngIf="additionalHours.length > 0"
+      [ngTemplateOutlet]="additionalHoursTemplate"
+      [ngTemplateOutletContext]="{ data: additionalHours }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #workingHoursTemplate let-data="data">
+  <div class="details__body__section__header">
+    <mat-icon class="details__body__section__header__icon"
+      >query_builder</mat-icon
+    >
+    <span>Hours</span>
+    <span class="details__body__section__header__time-range">
+      {{ data | hoursHeader }}</span
+    >
+  </div>
+  <div class="details__body__section__list">
+    <div class="details__body__section__list__header">
+      <span class="col-1">Type</span>
+      <span class="col-2">Duration</span>
+    </div>
+    <div
+      *ngFor="let workingHourItem of data"
+      class="details__body__section__list__items"
+    >
+      <span class="col-1">{{ workingHourItem.eventTypeName }}</span>
+      <span class="col-2">{{ workingHourItem | workingHourDuration }}</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #expensesTemplate let-data="data">
+  <div class="details__body__section__header">
+    <mat-icon class="details__body__section__header__icon"
+      >attach_money</mat-icon
+    >
+    <span>Expenses</span>
+  </div>
+  <div class="details__body__section__list">
+    <div class="details__body__section__list__header">
+      <span class="col-1--small">Type</span>
+      <span class="col-2">Quantity</span>
+      <span class="col-3">Price</span>
+    </div>
+    <div
+      *ngFor="let expenseItem of data"
+      class="details__body__section__list__items"
+    >
+      <span class="col-1--small">{{ expenseItem.eventTypeName }}</span>
+      <span class="col-2">{{ expenseItem.quantity }}</span>
+      <span class="col-3">{{ expenseItem | expenseItemPrice }}</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #additionalHoursTemplate let-data="data">
+  <div class="details__body__section__header">
+    <mat-icon class="details__body__section__header__icon"
+      >watch_later</mat-icon
+    >
+    <span>Additional hours</span>
+  </div>
+  <div class="details__body__section__list">
+    <div class="details__body__section__list__header">
+      <span class="col-1">Type</span>
+      <span class="col-2">Amount</span>
+    </div>
+    <div
+      *ngFor="let additionalHoursItem of data"
+      class="details__body__section__list__items"
+    >
+      <span class="col-1">{{ additionalHoursItem.eventTypeName }}</span>
+      <span class="col-2">{{
+        additionalHoursItem.quantity | number: "1.2-2"
+      }}</span>
+    </div>
+  </div>
+</ng-template>

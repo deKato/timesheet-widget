@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="day-name">{{ weekDayName }}</div>
+  <div
+    class="day-number"
+    [class.today]="dayNumber === todayDayNumber"
+    [class.selected]="isSelected"
+  >
+    {{ dayNumber }}
+  </div>
+  <div *ngIf="data && data[0] && data[0].tasksCount; else noHours">
+    {{ data[0].tasksCount }}:00
+  </div>
+  <ng-template #noHours>-</ng-template>
+  <div
+    *ngIf="status"
+    id="dot"
+    [ngClass]="{
+      green: status === 'green',
+      red: status === 'red',
+      grey: status === 'grey'
+    }"
+  ></div>
+</div>

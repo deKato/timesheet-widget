@@ -1,0 +1,8 @@
+<div class="card">
+  <app-header
+    (daySelected)="selectDay($event)"
+    (dayData)="getDayData($event)"
+  ></app-header>
+  <app-details [selectedDay]="daySelected" [dayData]="dayData"></app-details>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,10 @@
+@import '../common/common-styles.scss';
+
+.card {
+    width: 480px;
+    height: 768px;
+    background-color: $light-gray;
+    border-radius: $border-radius;
+    box-shadow: 0px 0px 10px 0px #000000;
+    position: relative;
+}

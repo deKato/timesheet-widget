@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="header">
+    <div class="header__title">{{ selectedDay | monthAndYear }}</div>
+    <mat-icon
+      class="header__icon-today"
+      (click)="selectDay(calendar[calendar.length - 1])"
+      >today</mat-icon
+    >
+  </div>
+  <div class="calendar-row">
+    <div
+      *ngFor="let day of calendar"
+      class="calendar-item"
+      (click)="selectDay(day)"
+    >
+      <app-calendar-item
+        [data]="data?.get(day)"
+        [day]="day"
+        [isSelected]="day === selectedDay"
+      ></app-calendar-item>
+    </div>
+  </div>
+</div>

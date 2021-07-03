@@ -1,0 +1,30 @@
+@import "../../common/common-styles.scss";
+
+.footer {
+  height: 100px;
+  background-color: $gray;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.footer__btn {
+  $margin: 20px;
+  letter-spacing: 0.05em;
+  background-color: $orange;
+  color: white;
+  font-size: $font-large;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: $border-radius;
+  border: none;
+  width: calc(100% - #{$margin} * 2);
+  height: calc(100% - #{$margin} * 2);
+  margin: $margin;
+  transition: filter 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(105%);
+  }
+}
