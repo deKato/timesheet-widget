@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./calendar-item.component.scss'],
 })
 export class CalendarItemComponent implements OnInit {
-  @Input() data: any | undefined;
+  @Input() data: ApiResponseItem[] | undefined;
   @Input() day: moment.Moment | undefined;
   @Input() isSelected: boolean | undefined;
 
@@ -16,12 +16,13 @@ export class CalendarItemComponent implements OnInit {
   dayNumber: string | undefined;
   todayDayNumber: string | undefined;
   status: string | undefined;
+  hasNoTasks: boolean | undefined;
+  hoursWorked: number | undefined;
 
   ngOnInit(): void {
     this.formatDateObjects();
-    if (this.data) {
-      this.getStatus();
-    } 
+    this.getStatus();
+    this.getHoursWorked();
   }
 
   private formatDateObjects() {
@@ -31,7 +32,7 @@ export class CalendarItemComponent implements OnInit {
   }
 
   private getStatus(): void {
-    if (this.hasNoTasks()) {
+    if (this.checkIfHasNoTasks()) {
       this.status = undefined;
       return;
     }
@@ -44,15 +45,26 @@ export class CalendarItemComponent implements OnInit {
     }
   }
 
-  private hasRejectedTask(): boolean {
-    return this.data.find((object: ApiResponseItem) => object.isRejected === true);
+  private getHoursWorked(): void {
+    this.hoursWorked = this.data?.filter(item => item.isHoursEventType).reduce((acc, obj) => acc + obj.quantity, 0);
   }
 
-  private allTasksApproved(): boolean {
-    return this.data.every((object: ApiResponseItem) => object.isApproved === true);
+  private hasRejectedTask(): boolean | undefined {
+    return this.data?.some(
+      (object: ApiResponseItem) => object.isRejected === true
+    );
   }
 
-  private hasNoTasks(): boolean {
-    return this.data.every((object: ApiResponseItem) => object.tasksCount === 0);
+  private allTasksApproved(): boolean | undefined {
+    return this.data?.every(
+      (object: ApiResponseItem) => object.isApproved === true
+    );
+  }
+
+  private checkIfHasNoTasks(): boolean | undefined {
+    this.hasNoTasks = this.data?.every(
+      (object: ApiResponseItem) => object.tasksCount === 0
+    );
+    return this.hasNoTasks;
   }
 }

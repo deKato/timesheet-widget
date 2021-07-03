@@ -2,7 +2,7 @@ import * as moment from "moment"
 
 export const responseMock = [{
     date: moment().subtract(6, 'days').format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 3,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -17,7 +17,7 @@ export const responseMock = [{
 },
 {
     date: moment().subtract(5, 'days').format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 8,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -32,7 +32,7 @@ export const responseMock = [{
 },
 {
     date: moment().subtract(4, 'days').format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 7,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -47,7 +47,7 @@ export const responseMock = [{
 },
 {
     date: moment().subtract(3, 'days').format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 2,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -77,7 +77,7 @@ export const responseMock = [{
 },
 {
     date: moment().subtract(1, 'days').format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 3,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -92,7 +92,7 @@ export const responseMock = [{
 },
 {
     date: moment().format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 4,
     price: 1,
     eventTypeName: 'Foo',
     isExpenseType: false,
@@ -107,7 +107,7 @@ export const responseMock = [{
 },
 {
     date: moment().format('YYYY-MM-DD'),
-    quantity: 1,
+    quantity: 2,
     price: 1,
     eventTypeName: 'Bar',
     isExpenseType: false,

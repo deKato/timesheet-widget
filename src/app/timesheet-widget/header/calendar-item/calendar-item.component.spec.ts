@@ -176,4 +176,10 @@ describe('CalendarItemComponent', () => {
     component.ngOnInit();
     expect(component.status).toBeUndefined();
   });
+
+  it('should calculate hours worked', () => {
+    component.data = MOCK_DAY_3;
+    component.ngOnInit();
+    expect(component.hoursWorked).toEqual(2);
+  });
 });

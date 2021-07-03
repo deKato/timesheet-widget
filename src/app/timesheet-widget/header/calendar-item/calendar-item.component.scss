@@ -11,6 +11,10 @@
   font-size: $font-small;
 }
 
+.day-name--weekend {
+  color: $font-color-gray;
+}
+
 .day-number {
   font-size: $font-large;
   padding: 4px;
